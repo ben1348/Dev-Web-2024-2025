@@ -95,8 +95,8 @@ module.exports = {
   
   // Gestion des erreurs et affichage
   errorOnDeprecated: false,
-  clearMocks: true,   // Nettoyer entre les tests
-  resetMocks: true,   // Reset complet entre tests
+  clearMocks: false,  // Ne pas effacer : les mocks __mocks__ définissent leurs implémentations au chargement
+  resetMocks: false,  // Ne pas reset : sinon TestBed.configureTestingModule() renvoie undefined et casse tous les tests composants
   restoreMocks: false,
   
   // =================================================================================

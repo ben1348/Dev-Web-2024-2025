@@ -78,6 +78,20 @@ module.exports = {
   
   // Tokens et constantes Angular
   PLATFORM_ID: 'mock-platform-id',
+
+  // Signals Angular (utilisés par les services LoginService, RouletteService, etc.)
+  signal: function(initialValue) {
+    let value = initialValue;
+    const signalFn = function() { return value; };
+    signalFn.set = function(newValue) { value = newValue; };
+    signalFn.update = function(updateFn) { value = updateFn(value); };
+    return signalFn;
+  },
+
+  computed: function(computation) {
+    const computedFn = function() { return computation(); };
+    return computedFn;
+  },
   
   EventEmitter: class {
     constructor() {

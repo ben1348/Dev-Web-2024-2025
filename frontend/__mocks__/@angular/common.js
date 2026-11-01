@@ -16,6 +16,9 @@ module.exports = {
   NgSwitchDefault: class {},
   NgClass: class {},
   NgStyle: class {},
+
+  isPlatformBrowser: (platformId) => platformId === 'browser' || platformId === undefined,
+  isPlatformServer: (platformId) => platformId === 'server',
   
   DatePipe: class {
     transform(value, format) {

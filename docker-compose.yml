@@ -1,0 +1,19 @@
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: casino-db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: c@sino
+      MARIADB_DATABASE: dev3
+    ports:
+      - "3307:3306"
+    volumes:
+      - casino-db-data:/var/lib/mysql
+      # Importés automatiquement au premier démarrage (ordre alphabétique :
+      # casino.sql avant data-casino.sql)
+      - ./db/queries/casino.sql:/docker-entrypoint-initdb.d/01-casino.sql:ro
+      - ./db/queries/data-casino.sql:/docker-entrypoint-initdb.d/02-data-casino.sql:ro
+
+volumes:
+  casino-db-data:
